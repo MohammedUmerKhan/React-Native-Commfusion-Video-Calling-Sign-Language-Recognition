@@ -1,0 +1,20 @@
+const data = [
+ {
+    "id": 8,
+    "users": [
+      // users array
+    ]
+ },
+ {
+    "id": 9,
+    "users": [
+      // users array
+    ]
+ },
+ {
+    "id": 10,
+    "users": [
+      // users array
+    ]
+ }
+];

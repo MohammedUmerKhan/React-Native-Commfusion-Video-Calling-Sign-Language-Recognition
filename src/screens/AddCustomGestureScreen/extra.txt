@@ -1,0 +1,216 @@
+import React, {useState, useRef, useCallback, useEffect} from 'react';
+import {
+  Text,
+  View,
+  Image,
+  SafeAreaView,
+  StatusBar,
+  TouchableOpacity,
+  ScrollView,
+  ActivityIndicator,
+  StyleSheet,
+  PermissionsAndroid, // Import PermissionsAndroid from react-native
+  Alert, // Import Alert for showing alerts
+  Linking, // Import Linking for opening settings
+} from 'react-native';
+
+import styles from './styles';
+import COLORS from '../../constants/colors';
+import CustomButton from '../../components/buttons/customButton';
+import SettingsTextInput from '../../components/input/settingsTextInput';
+
+import {
+  Camera,
+  FileSystem,
+  Permissions,
+  useCameraDevices,
+} from 'react-native-vision-camera';
+import Video from 'react-native-video';
+import RNFS from 'react-native-fs';
+
+const App = ({navigation}) => {
+  const devices = useCameraDevices('wide-angle-camera');
+  const fallbackDevices = useCameraDevices('telephoto-camera');
+  const ultraWide = useCameraDevices('ultra-wide-angle-camera');
+  const device = devices.front || fallbackDevices.front || ultraWide.front;
+  const [description, setDescription] = useState('');
+
+  const [isRecording, setIsRecording] = useState(false);
+  const [videoPath, setVideoPath] = useState('');
+  const cameraRef = useRef();
+
+  const startRecording = async () => {
+    try {
+      console.log('Start Recording');
+
+      setIsRecording(true);
+
+      const videoPath = `${RNFS.CachesDirectoryPath}/video.mp4`;
+      setVideoPath(videoPath);
+
+      cameraRef.current.startRecording({
+        quality: '720p',
+        videoBitrate: 2000000,
+        maxDuration: 10, // Set the maximum duration in seconds (optional)
+        maxFileSize: 100 * 1024 * 1024, // Set the maximum file size in bytes (optional)
+        outputPath: videoPath,
+      });
+    } catch (error) {
+      console.error(`Error starting recording: ${error.message}`);
+    }
+  };
+
+  const stopRecording = async () => {
+    setIsRecording(false);
+    try {
+      await cameraRef.current.stopRecording();
+    } catch (error) {
+      console.error(`Error stopping recording: ${error.message}`);
+    }
+  };
+
+  const requestCameraPermission = useCallback(async () => {
+    try {
+      const granted = await PermissionsAndroid.requestMultiple([
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+      ]);
+
+      if (
+        granted['android.permission.CAMERA'] ===
+          PermissionsAndroid.RESULTS.GRANTED &&
+        granted['android.permission.RECORD_AUDIO'] ===
+          PermissionsAndroid.RESULTS.GRANTED
+      ) {
+        console.log('You can use the camera and record audio');
+        // Proceed with your camera and audio recording logic here
+      } else {
+        Alert.alert(
+          'Permission Not Granted',
+          'You need to grant this app permission to use the camera and record audio',
+          [
+            {
+              text: 'Cancel',
+              onPress: () => navigation.pop(),
+            },
+            {
+              text: 'Grant',
+              onPress: () => Linking.openSettings(),
+            },
+          ],
+        );
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  }, [navigation]);
+
+  useEffect(() => {
+    requestCameraPermission();
+  }, [requestCameraPermission]);
+
+  return (
+    <SafeAreaView style={styles.main}>
+      <StatusBar backgroundColor={COLORS.white} barStyle="dark-content" />
+      <ScrollView>
+        <View style={styles.container}>
+          {device ? (
+            <Camera
+              style={styles.camera}
+              ref={cameraRef}
+              device={device}
+              isActive={true}
+              video={true}
+            />
+          ) : (
+            <ActivityIndicator size="large" color={COLORS.b} />
+          )}
+
+          {isRecording ? (
+            <TouchableOpacity
+              style={styles.recordButton}
+              onPress={stopRecording}>
+              <Text style={styles.recordButtonText}>Stop Recording</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={styles.recordButton}
+              onPress={startRecording}>
+              <Text style={styles.recordButtonText}>Start Recording</Text>
+            </TouchableOpacity>
+          )}
+
+          {videoPath !== '' && (
+            <View style={styles.videoPlayer}>
+              <Video
+                source={{uri: videoPath}}
+                style={styles.videoPlayer}
+                controls
+              />
+            </View>
+          )}
+        </View>
+        <View>
+          <View>
+            <SettingsTextInput
+              placeholder="Description"
+              value={description}
+              onChangeText={setDescription}
+            />
+          </View>
+        </View>
+        <View style={styles.centercontainer}>
+          <CustomButton
+            onPress={() => {
+              navigation.navigate('ProfileSetup');
+            }}
+            buttonBackgroundColor="#20A0F0"
+            textColor="white"
+            borderColor="#20A0F0"
+            borderWidth={4}
+            buttonText="Upload Gesture"
+            buttonWidth="85%"
+          />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
+
+export default App;
+
+// styles.js
+import {StyleSheet} from 'react-native';
+import COLORS from '../../constants/colors';
+
+export default StyleSheet.create({
+  main: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#000',
+    height: 600,
+  },
+  camera: {
+    flex: 1,
+  },
+  recordButton: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    right: 20,
+    backgroundColor: 'red',
+    padding: 20,
+    alignItems: 'center',
+  },
+  recordButtonText: {
+    fontSize: 18,
+    color: '#fff',
+  },
+  videoPlayer: {
+    flex: 1,
+    marginTop: 20,
+  },
+});
