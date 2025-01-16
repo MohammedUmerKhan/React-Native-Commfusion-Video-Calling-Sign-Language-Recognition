@@ -27,7 +27,72 @@ Here are some snapshots of the beautiful screens you'll encounter in CommFusion:
 
 2. Authentication Screen
    <img src="./src/assets/images/readme/authScreen.png" alt="Authentication Screen" style="height: 177px; width: 100px;" />
+
 3. Login Screen
+   <img src="./src/assets/images/readme/loginScreen.png" alt="Login Screen" style="height: 177px; width: 100px;" />
+
+4. Home Screen
+   <img src="./src/assets/images/readme/homeScreen.png" alt="Home Screen" style="height: 177px; width: 100px;" />
+
+5. Home FAB Screen
+   <img src="./src/assets/images/readme/homeFABScreen.png" alt="Home FAB Screen" style="height: 177px; width: 100px;" />
+
+6. Call Logs Screen
+   <img src="./src/assets/images/readme/callLogsScreen.png" alt="Call Logs Screen" style="height: 177px; width: 100px;" />
+
+7. Favorite Sign Screen
+   <img src="./src/assets/images/readme/favouriteSignScreen.png" alt="Favorite Sign Screen" style="height: 177px; width: 100px;" />
+
+8. Beginner Level Screen
+   <img src="./src/assets/images/readme/beginnerLevelScreen.png" alt="Beginner Level Screen" style="height: 177px; width: 100px;" />
+
+9. Alphabet Details Screen
+   <img src="./src/assets/images/readme/alphabetDetailsScreen.png" alt="Alphabet Details Screen" style="height: 177px; width: 100px;" />
+
+10. Beginner Level Screen
+    <img src="./src/assets/images/readme/beginnerLevelScreen.png" alt="Beginner Level Screen" style="height: 177px; width: 100px;" />
+
+11. Settings Screen
+    <img src="./src/assets/images/readme/generalSettingsScreen.png" alt="General Settings Screen" style="height: 177px; width: 100px;" />
+
+12. Notification Settings Screen
+    <img src="./src/assets/images/readme/notificationSettingsScreen.png" alt="Notification Settings Screen" style="height: 177px; width: 100px;" />
+
+13. Profile Details Level Screen
+    <img src="./src/assets/images/readme/profileDetailsScreen.png" alt="Profile Details Screen" style="height: 177px; width: 100px;" />
+
+14. Sign up Screen
+    <img src="./src/assets/images/readme/beginnerLevelScreen.png" alt="Beginner Level Screen" style="height: 177px; width: 100px;" />
+
+15. Add New Contact Screen
+    <img src="./src/assets/images/readme/addNewContactScreen.png" alt="Add New Contact Screen" style="height: 177px; width: 100px;" />
+
+16. Call Info Screen
+    <img src="./src/assets/images/readme/callInfoScreen.png" alt="Call Info Screen" style="height: 177px; width: 100px;" />
+
+17. Incoming Call Screen
+    <img src="./src/assets/images/readme/incomingCallScreen.png" alt="Incoming Call Screen" style="height: 177px; width: 100px;" />
+
+18. OutGoing Call Screen
+    <img src="./src/assets/images/readme/outGoingCallScreen.png" alt="OutGoing Call Screen" style="height: 177px; width: 100px;" />
+
+19. Video Call 1 Screen
+    <img src="./src/assets/images/readme/videocall1Screen.png" alt="Video Call 1 Screen" style="height: 177px; width: 100px;" />
+
+20. Video Call 2 Screen
+    <img src="./src/assets/images/readme/videocall2Screen.png" alt="Video Call 2 Screen" style="height: 177px; width: 100px;" />
+
+21. Video Call 3 Screen
+    <img src="./src/assets/images/readme/videocall3Screen.png" alt="Video Call 3 Screen" style="height: 177px; width: 100px;" />
+
+22. Video Call 4 Screen
+    <img src="./src/assets/images/readme/videocall4Screen.png" alt="Video Call 4 Screen" style="height: 177px; width: 100px;" />
+
+23. Video Call 5 Screen
+    <img src="./src/assets/images/readme/videocall5Screen.png" alt="Video Call 5 Screen" style="height: 177px; width: 100px;" />
+
+24. Video Call 6 Screen
+    <img src="./src/assets/images/readme/videocall6Screen.png" alt="Video Call 6 Screen" style="height: 177px; width: 100px;" />
 
 Feel free to explore the various screens and their functionalities within the app.
 
